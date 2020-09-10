@@ -6,16 +6,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
@@ -38,10 +34,8 @@ public class User {
 	@Column(name = "mobile_number", unique = true, length = 10)
 	private String mobileNumber;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH })
-	@LazyCollection(LazyCollectionOption.FALSE)
+			CascadeType.REFRESH }, fetch = FetchType.LAZY)
 	private List<Address> address;
 
 	public List<Address> getAddress() {

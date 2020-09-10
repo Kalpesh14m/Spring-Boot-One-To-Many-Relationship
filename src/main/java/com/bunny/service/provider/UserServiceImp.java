@@ -1,5 +1,6 @@
 package com.bunny.service.provider;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -12,6 +13,7 @@ import com.bunny.model.dto.RegistrationDTO;
 import com.bunny.repo.UserRepo;
 import com.bunny.service.UserService;
 import com.movie.exception.UserAlreadyRegisteredException;
+import com.movie.exception.UserNotFoundException;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -31,22 +33,23 @@ public class UserServiceImp implements UserService {
 		return true;
 	}
 
-//	public User findById(Long id) {
-//
-//		return userRepository.findByUserId(id);
-//	}
-//
-//	public List<User> getUser() {
-//		List<User> user = userRepository.getUser();
-//		if (user.isEmpty()) {
-//			throw new UserNotFoundException(Constant.USER_NOT_FOUND_EXCEPTION_MESSAGE,
-//					Constant.NOT_FOUND_RESPONSE_CODE);
-//		}
-//		return user;
-//	}
-//
-//	public void deleteUserById(Long id) {
-//		userRepository.delete(id);
+	public User getUserById(Long userId) {
+		Optional<User> maybeUser = userRepository.findById(userId);
+		if (!maybeUser.isPresent()) {
+			throw new UserNotFoundException(Constant.USER_NOT_FOUND_EXCEPTION_MESSAGE,
+					Constant.NOT_FOUND_RESPONSE_CODE);
+		}
+		return maybeUser.get();
+	}
+
+	@Override
+	public List<User> getUsers() {
+		return userRepository.findAll();
+	}
+
+//Need to work
+//	public void deleteUser(Long id) {
+//		userRepository.deleteById(id);
 //	}
 
 }

@@ -25,7 +25,12 @@ public class Constant {
 	public static final String USER_DETAILS_UPDATED_SUCCESSFULLY = "User Details Updated Successfully";
 
 	public static final String ADDRESS_DETAILS_ADDED = "address details added succefully";
-	public static final String ADDRESS_DETAILS_FAIL = " address details failed to add ";
+	public static final String ADDRESS_DETAILS_DELETED = "address details deleted succefully";
+	public static final String ADDRESS_DETAILS_UPDATED = "address details updated succefully";
+	public static final String ADDRESS_DETAILS_FAIL_TO_ADD = " address details failed to add";
+	public static final String ADDRESS_DETAILS_FAIL_TO_DELETE = " address details failed to delete";
+	public static final String ADDRESS_DETAILS_FAIL_TO_UPDATE = " address details failed to update";
 	public static final String ADDRESS_DETAILS_FOUND = "address details found for required type succefully";
 	public static final String ADDRESS_DETAILS_NOT_fOUND = " not found address details for required type ";
+
 }

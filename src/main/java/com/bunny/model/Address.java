@@ -10,13 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "address")
 public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "address_id")
-	private long addressId;
+	private Long addressId;
 
 	@Column(name = "city", nullable = false)
 	private String city;
@@ -29,6 +31,7 @@ public class Address {
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	public User getUser() {
@@ -42,7 +45,7 @@ public class Address {
 	public Address() {
 	}
 
-	public Address(long addressId, String city, String state, String country, User user) {
+	public Address(Long addressId, String city, String state, String country, User user) {
 		this.addressId = addressId;
 		this.city = city;
 		this.state = state;
@@ -50,11 +53,11 @@ public class Address {
 		this.user = user;
 	}
 
-	public long getAddressId() {
+	public Long getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(long addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 
@@ -80,12 +83,6 @@ public class Address {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	@Override
-	public String toString() {
-		return "Address [addressId=" + addressId + ", city=" + city + ", state=" + state + ", country=" + country
-				+ ", user=" + user + "]";
 	}
 
 }
